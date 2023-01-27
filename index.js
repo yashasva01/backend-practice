@@ -60,14 +60,17 @@ app.put('/tasks/:id', (req,res) => {
     if(taskIndex === -1){
         return res.status(404).send('Id not found');
     }
-    const obj = req.body;
-    Object.keys(obj).forEach((key) => {
-        taskList[taskIndex][key] = obj[key];
-    });
+    // const obj = req.body;
+    const updatedTask= {
+        ...taskList[taskIndex],
+        ...req.body
+    };
+    // Object.keys(obj).forEach((key) => {
+    //     taskList[taskIndex][key] = obj[key];
+    // });
+    taskList[taskIndex] = updatedTask;
     return res.send(JSON.stringify(taskList[taskIndex]));
 });
 app.listen(port, () => {
     console.log(`server is running on port: localhost:${port}`);
 });
-
-
