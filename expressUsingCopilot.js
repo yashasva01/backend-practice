@@ -1,11 +1,14 @@
+// create an express server
 const express = require('express');
-const router = require('./router');
 const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: true}));
-
-app.use(router);
 const port = 8000;
+
+app.get('/', (req, res) => {
+    res.send('This is todo app!!!!!');
+});
+
 app.listen(port, () => {
-    console.log(`server is running on port: localhost:${port}`);
+    console.log(`Server is running on port ${port}`);
 });
